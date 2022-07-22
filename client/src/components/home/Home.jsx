@@ -1,9 +1,15 @@
 
+//compnents
+import NavBar from "./NavBar";
+import Banner from "./Banner";
 
 const Home = () => {
-    return (
-        <p>Hello from home</p>
-    );
+  return (
+    <>
+      <NavBar />
+      <Banner />
+    </>
+  );
 };
 
 export default Home;
