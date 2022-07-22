@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search"
 
 const SearchContainer = styled(Box)`
     background: #fff;
-    width: 30%;
+    width: 38%;
     border-radius: 2px;
     margin-left: 10px;
     display: flex;
