@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-Project live link: [Mern-e-commerce-site](https://github.com/facebook/create-react-app).
+Project live link: [Mern-e-commerce-site](https://mern-e-commerce-project.netlify.app/).
 
 ## Available Scripts
 
