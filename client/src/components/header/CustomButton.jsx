@@ -39,7 +39,7 @@ const LoginButton = styled(Button)`
 const CustomButton = () => {
   const [open, setOpen] = useState(false);
 
-  const { account } = useContext(DataContext);
+  const { account, setAccount } = useContext(DataContext);
 
   const openDialog = () => {
     setOpen(true);
@@ -48,7 +48,7 @@ const CustomButton = () => {
   return (
     <Wrapper>
       {account ? (
-        <Profile account={account} />
+        <Profile account={account}  setAccount={setAccount}/>
       ) : (
         <LoginButton variant="contained" onClick={() => openDialog()}>
           Login
