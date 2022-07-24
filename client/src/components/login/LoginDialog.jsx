@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Button,
@@ -7,13 +6,15 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import { authenticateSignup } from "../../service/api";
+import { DataContext } from "../../context/DataProvider";
 
 const Component = styled(Box)`
   height: 75vh;
   width: 90vh;
 `;
-
 
 const Image = styled(Box)`
   background: #2874f0
@@ -86,18 +87,19 @@ const accountInitialValues = {
 
 const signupInitialValues = {
   firstname: "",
-  lastname: "", 
+  lastname: "",
   username: "",
-  email: "", 
-  password: "", 
-  phone: ""
-
-}
+  email: "",
+  password: "",
+  phone: "",
+};
 
 const LoginDialog = ({ open, setOpen }) => {
   // hook
   const [account, toggleAccount] = useState(accountInitialValues.login);
-  const [signup, setSignup] = useState(signupInitialValues)
+  const [signup, setSignup] = useState(signupInitialValues);
+
+  const {setAccount} = useContext(DataContext)
 
   // closing Dialog
   const handleClose = () => {
@@ -109,10 +111,17 @@ const LoginDialog = ({ open, setOpen }) => {
     toggleAccount(accountInitialValues.signup);
   };
 
-  const onInputChange = (e) =>{
-    setSignup({...signup, [e.target.name] : e.target.value})
-    console.log(signup)
-  }
+  const onInputChange = (e) => {
+    setSignup({ ...signup, [e.target.name]: e.target.value });
+    console.log(signup);
+  };
+
+  const signupUser = async () => {
+    let response = await authenticateSignup(signup);
+    if (!response) return;
+    handleClose();
+    setAccount(signup.firstname)
+  };
 
   return (
     <Dialog
@@ -145,14 +154,44 @@ const LoginDialog = ({ open, setOpen }) => {
             </Wrapper>
           ) : (
             <Wrapper>
-              <TextField variant="standard" onChange={(e)=> onInputChange(e)} name="firstname" label="Enter Firstname" />
-              <TextField variant="standard" onChange={(e)=> onInputChange(e)} name="lastname" label="Enter Lastname" />
-              <TextField variant="standard" onChange={(e)=> onInputChange(e)} name="username" label="Enter Username" />
-              <TextField variant="standard" onChange={(e)=> onInputChange(e)} name="email" label="Enter Email" />
-              <TextField variant="standard" onChange={(e)=> onInputChange(e)} name="password" label="Enter Password" />
-              <TextField variant="standard" onChange={(e)=> onInputChange(e)} name="phone" label="Enter Phone" />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e)}
+                name="firstname"
+                label="Enter Firstname"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e)}
+                name="lastname"
+                label="Enter Lastname"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e)}
+                name="username"
+                label="Enter Username"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e)}
+                name="email"
+                label="Enter Email"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e)}
+                name="password"
+                label="Enter Password"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e)}
+                name="phone"
+                label="Enter Phone"
+              />
 
-              <LoginButton onClick={()=> signupUser()}>Signup</LoginButton>
+              <LoginButton onClick={() => signupUser()}>Signup</LoginButton>
               {/* <Typography style={{ textAlign: "center" }}>OR</Typography>
               <RequestOTP>Request OTP</RequestOTP>
               <CreateAccount>New to Flipkart? Create an account.</CreateAccount> */}
