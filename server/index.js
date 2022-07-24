@@ -1,11 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import Connection from "./database/db.js"; // we must write filename with extension for backend
-import defaultData from "./default.js"
+import defaultData from "./default.js";
+import Router from "./routes/route.js";
 
 dotenv.config();
 const app = express();
+app.use(cors());
+
+app.use("/", Router)
 
 const PORT = 5000;
 
