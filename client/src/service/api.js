@@ -16,5 +16,6 @@ export const authenticateLogin  = async (data) =>{
   }
   catch(err){
     console.log(`Error while calling login api `, err);
+    return err.response;
   }
 }
