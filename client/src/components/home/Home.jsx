@@ -33,6 +33,10 @@ const Home = () => {
       <Component>
         <Banner />
         <Slide products={products}/>
+        <Slide products={products}/>
+        <Slide products={products}/>
+        <Slide products={products}/>
+        <Slide products={products}/>
       </Component>
     </>
   );
