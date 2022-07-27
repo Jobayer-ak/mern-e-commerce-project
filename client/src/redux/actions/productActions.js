@@ -3,7 +3,7 @@ import * as actionTypes from "../constants/productConstants.js";
 const URL = "http://localhost:5000";
 
 
-
+// action
 export const getProducts = ()=> async(dispatch) =>{
     try{
         const {data} = await axios.get(`${URL}/products`);

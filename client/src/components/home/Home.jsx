@@ -1,11 +1,13 @@
 //compnents
-import NavBar from "./NavBar";
-import Banner from "./Banner";
-import { Box, styled } from "@mui/material";
+import { Box, styled} from "@mui/material";
 import { useEffect } from "react";
 import { getProducts } from "../../redux/actions/productActions";
 
 import {useDispatch, useSelector} from "react-redux";
+import NavBar from "./NavBar";
+import Banner from "./Banner";
+import Slide from "./Slider";
+
 
 const Component = styled(Box)`
   padding: 10px 10px;
@@ -26,10 +28,11 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch])
   return (
-    <>
+    <> 
       <NavBar />
       <Component>
         <Banner />
+        <Slide products={products}/>
       </Component>
     </>
   );
