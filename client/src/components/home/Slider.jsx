@@ -53,16 +53,16 @@ const ViewAllButton = styled(Button)`
 `;
 
 const Image = styled("img")({
-    width: "auto",
-    height: 150
-})
+  width: "auto",
+  height: 150,
+});
 
 const Text = styled(Typography)`
-    font-size: 14px;
-    margin-top: 5px;
-`
+  font-size: 13px;
+  margin-top: 5px;
+`;
 
-const Slider = ({ products }) => {
+const Slider = ({ products, title, timer }) => {
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
 
@@ -78,11 +78,13 @@ const Slider = ({ products }) => {
   return (
     <Component>
       <Deal>
-        <DealText>Deal of the Day</DealText>
-        <Timer>
-          <img src={timerURL} alt="imter" style={{ width: 24 }} />
-          <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
-        </Timer>
+        <DealText>{title}</DealText>
+        {timer && (
+          <Timer>
+            <img src={timerURL} alt="imter" style={{ width: 24 }} />
+            <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
+          </Timer>
+        )}
         <ViewAllButton variant="contained" color="primary">
           View All
         </ViewAllButton>
@@ -102,11 +104,15 @@ const Slider = ({ products }) => {
         containerClass="carousel-container"
       >
         {products.map((product) => (
-          <Box textAlign="center" style={{padding: "25px 15px"}}>
+          <Box textAlign="center" style={{ padding: "25px 15px" }}>
             <Image src={product.url} alt="product" />
-            <Text style={{fontWeight: 600, color: "#212121"}}>{product.title.shortTitle}</Text>
-            <Text style={{color: "green"}}>{product.discount}</Text>
-            <Text style={{color: "#212121", opacity: "0.6"}}>{product.tagline}</Text>
+            <Text style={{ fontWeight: 600, color: "#212121" }}>
+              {product.title.shortTitle}
+            </Text>
+            <Text style={{ color: "green" }}>{product.discount}</Text>
+            <Text style={{ color: "#212121", opacity: "0.6" }}>
+              {product.tagline}
+            </Text>
           </Box>
         ))}
       </Carousel>

@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import NavBar from "./NavBar";
 import Banner from "./Banner";
 import Slide from "./Slider";
+import MidSlide from "./MidSlide";
+import MidSection from "./MidSection";
 
 
 const Component = styled(Box)`
@@ -32,11 +34,15 @@ const Home = () => {
       <NavBar />
       <Component>
         <Banner />
-        <Slide products={products}/>
-        <Slide products={products}/>
-        <Slide products={products}/>
-        <Slide products={products}/>
-        <Slide products={products}/>
+        <MidSlide products={products} title="Deal fo the Day" timer={true}/>
+        <MidSection/>
+        <Slide products={products} title="Descount for You" timer={false}/>
+        <Slide products={products} title="Suggesting Items" timer={false}/>
+        <Slide products={products} title="Top Selection" timer={false}/>
+        <Slide products={products} title="Recommended Items" timer={false}/>
+        <Slide products={products} title="Trending Offers" timer={false}/>
+        <Slide products={products} title="Season's top pics" timer={false}/>
+        <Slide products={products} title="Top Deals on Accessories" timer={false}/>
       </Component>
     </>
   );
