@@ -3,6 +3,21 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import { getProductDetailReducer, getProductsReducer } from "./reducers/productReducer";
 
+
+ 
+const reducer = combineReducers({
+    getProducts: getProductsReducer,
+    getProductDetails: getProductDetailReducer
+})
+
+// thunk middleware
+const middleware = [thunk];
+
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)));
+
+
+export default store;
+
 /**
  * reducer is a pure function.
  * it accepts two arguments state and actionl
@@ -24,16 +39,3 @@ import { getProductDetailReducer, getProductsReducer } from "./reducers/productR
 /**
  * creatStore accepts two arguments reducer and middleware
  */
- 
-const reducer = combineReducers({
-    getProducts: getProductsReducer,
-    getProductDetails: getProductDetailReducer
-})
-
-// thunk middleware
-const middleware = [thunk];
-
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)));
-
-
-export default store;
