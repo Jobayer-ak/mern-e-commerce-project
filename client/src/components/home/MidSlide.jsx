@@ -24,7 +24,7 @@ const RightComponent = styled(Box)(({theme})=>({
     textAlign: "center",
     [theme.breakpoints.down("md")]:{
         display:"none",
-    }
+    } 
 }))
  
 
