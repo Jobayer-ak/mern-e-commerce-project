@@ -95,7 +95,7 @@ const Slider = ({ products, title, timer }) => {
         responsive={responsive}
         swipeable={true}
         draggable={false}
-        infinite={true}
+        infinite={true}  
         autoPlay={true}
         autoPlaySpeed={1000}
         keyBoardControl={true}
@@ -104,6 +104,7 @@ const Slider = ({ products, title, timer }) => {
         itemClass="carousel-item-padding-40-px"
         containerClass="carousel-container"
       >
+        
         {products.map((product) => (
           <Link to={`product/${product.id}`} style={{textDecoration: "none"}}>
             <Box textAlign="center" style={{ padding: "25px 15px" }}>
