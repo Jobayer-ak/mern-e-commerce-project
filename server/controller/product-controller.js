@@ -1,4 +1,5 @@
 
+import { response } from "express";
 import Product from "../model/product-schema.js";
 
 export const getProducts = async (req, res) =>{
@@ -9,6 +10,18 @@ export const getProducts = async (req, res) =>{
     }
     catch(err){
         res.status(500).json({message: err.message});
+    }
+}
+
+export const getProductByid = async (req, res) =>{
+    try{
+        const id = req.params.id;
+        const products = await Product.findOne({"id": id});
+
+        res.status(200).json(products);
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
     }
 }
 
