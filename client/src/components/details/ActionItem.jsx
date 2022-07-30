@@ -3,12 +3,14 @@ import React from "react";
 import { ShoppingCart as Cart, FlashOn as Flash } from "@mui/icons-material/";
 
 const LeftContainer = styled(Box)`
-  min-width: 40px;
+  min-width: 40%;
   padding: 40px 0 0 80px;
+  // overflow: hidden;
+  margin-right: 40px;
 `;
 const Image = styled("img")({
-
-  padding: "15px"
+  padding: "15px",
+  width: "80%",
 });
 
 const StyleButton = styled(Button)`
