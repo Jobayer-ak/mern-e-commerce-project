@@ -5,10 +5,13 @@ import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../redux/actions/productActions";
 import ActionItem from "./ActionItem";
 
+
+
 const Component = styled(Box)`
   background: #f2f2f2;
   margin-top: 55px;
 `;
+
 const Container = styled(Grid)`
   background: #ffffff;
   display: flex;
@@ -24,7 +27,8 @@ const DetailView = () => {
 
   const { loading, product } = useSelector((state) => state.getProductDetails);
 
-  const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
+  const fassured =
+    "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
 
   useEffect(() => {
     if (product && id !== product.id) dispatch(getProductDetails(id));
@@ -44,15 +48,23 @@ const DetailView = () => {
             <Typography
               style={{ marginTop: 5, color: "#878787", fontSize: 14 }}
             >
-              8 Reatings & 1 Review
-              <Box Component = "span">
-                <img src={fassured} alt="fassured" style={{width: 77, marginLeft: 20}} />
+              8 Ratings & 1 Review
+              <Box component="span">
+                <img
+                  src={fassured}
+                  alt="fassured"
+                  style={{ width: 77, marginLeft: 20 }}
+                />
               </Box>
             </Typography>
             <Typography>
-                <Box Component="span">{product.price.cost}</Box>
-                <Box Component="span"><strike>{product.price.mrp}</strike></Box>
-                <Box Component="span">{product.price.discount}</Box>
+              <Box component="span" style={{fontSize: 28}}>₹{product.price.cost}</Box>&nbsp;&nbsp;&nbsp;
+              <Box component="span" style={{color: "#878787"}}>
+                <strike>₹{product.price.mrp}</strike>&nbsp;&nbsp;&nbsp;
+              </Box>
+              <Box component="span" style={{color: "#388E3C"}}>
+                <strike>{product.price.discount}</strike>
+              </Box>
             </Typography>
           </RightContainer>
         </Container>
