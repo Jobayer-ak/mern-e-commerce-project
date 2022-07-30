@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const URL = "http://localhost:5000"
+// const URL = "http://localhost:5000"
+
+const URL = "https://flipkart-mern-ecommerce.herokuapp.com";
 
 export const authenticateSignup = async (data) => {
   try {
