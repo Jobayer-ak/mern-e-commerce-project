@@ -1,8 +1,12 @@
-import { AppBar, Toolbar, Box, styled, Typography } from "@mui/material";
+import { AppBar, Toolbar, Box, Typography, IconButton, Drawer,List, ListItem, styled } from "@mui/material";
+import {Menu} from '@mui/icons-material';
 // component
 import Search from "./Search";
 import CustomButton from "./CustomButton";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+
 
 const StyledHeader = styled(AppBar)`
   background: #2874f0;
@@ -26,20 +30,61 @@ const PlusImage = styled("img")({
   height: 10,
 });
 
-const CustomButtonWrapper = styled(Box)`
-  margin: 0 5% 0 auto;
-`
+const CustomButtonWrapper = styled(Box)(({ theme }) => ({
+  margin: "0 5% 0 auto",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
+
+
+const MenuButton = styled(IconButton)(({theme})=>({
+  display: "none",
+  [theme.breakpoints.down("md")]: {
+    display: "block",
+  }
+}))
+
+
+
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
   const logoURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png";
 
   const subURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png";
 
+    const handleOpen = () =>{
+      setOpen(true);
+    }
+
+    const handleClose = () =>{
+      setOpen(false);
+    }
+
+    const list = () =>(
+      <Box style={{width: 200}} onClick={handleClose}>
+        <List>
+          <ListItem button>
+              <CustomButton/>
+          </ListItem>
+        </List>
+      </Box>
+    )
+
+    
+
   return (
     <StyledHeader>
-      <Toolbar style={{minHeight: 55}}>
+      <Toolbar style={{ minHeight: 55 }}>
+        <MenuButton color="inherit" onClick={handleOpen}>
+          <Menu/>
+        </MenuButton>
+        <Drawer open={open} onClose={handleClose}> 
+           { list()}
+         </Drawer>
         <Component to="/">
           <img src={logoURL} alt="logo" style={{ width: 75 }} />
           <Box style={{ display: "flex" }}>
@@ -52,9 +97,9 @@ const Header = () => {
             <PlusImage src={subURL} alt="sub-logo" />
           </Box>
         </Component>
-        <Search/>
+        <Search />
         <CustomButtonWrapper>
-          <CustomButton/>
+          <CustomButton />
         </CustomButtonWrapper>
       </Toolbar>
     </StyledHeader>

@@ -2,8 +2,8 @@ import {
   Box,
   styled,
   Table,
-  TableCell,
   TableRow,
+  TableCell,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -24,9 +24,18 @@ const StyledBadge = styled(Badge)`
   font-size: 15px;
 `;
 
+const ColumnText = styled(TableRow)`
+  font-size: 14px;
+  vertical-align: baseline;
+  & > td {
+    font-size: 14px;
+    margin-top: 10px;
+    border: none;
+  }
+`;
+
 const ProductDetail = ({ product }) => {
-  const fassured =
-    "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
+  const fassured ="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
 
   const adURL =
     "https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019-07-14.png?q=50";
@@ -35,7 +44,7 @@ const ProductDetail = ({ product }) => {
 
   return (
     <>
-      <Typography>{product.title.longTitle}</Typography>
+       <Typography>{product.title.longTitle}</Typography>
       <Typography style={{ marginTop: 5, color: "#878787", fontSize: 14 }}>
         8 Ratings & 1 Review
         <Box component="span">
@@ -57,7 +66,7 @@ const ProductDetail = ({ product }) => {
         <Box component="span" style={{ color: "#388E3C" }}>
           <strike>{product.price.discount}</strike>
         </Box>
-      </Typography>
+      </Typography> 
       <Typography>Available Offers</Typography>
       <SmallText>
         <Typography>
@@ -89,35 +98,40 @@ const ProductDetail = ({ product }) => {
 
       {/* Table */}
       <Table>
-        <TableRow>
+        <ColumnText>
           <TableCell style={{ color: "#878787" }}>Delivery</TableCell>
           <TableCell style={{ fontWeight: 600 }}>
             Delivery by {date.toDateString()} | ₹40
           </TableCell>
-        </TableRow>
-        <TableRow>
+        </ColumnText>
+        <ColumnText>
           <TableCell style={{ color: "#878787" }}>Warranty</TableCell>
           <TableCell>No Warranty</TableCell>
-        </TableRow>
-        <TableRow>
+        </ColumnText>
+
+        <ColumnText>
           <TableCell style={{ color: "#878787" }}>Seller</TableCell>
-          <TableCell style={{ colr: "#2874f0" }}>
-            <Box component="span">SuperComNet</Box>
+          <TableCell>
+            <Box component="span" style={{ color: "#2874f0" }}>SuperComNet</Box>
             <Typography>GST invoice available</Typography>
             <Typography>
               View more sellers starting from {product.price.cost}
             </Typography>
           </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell colspan={2}>
+        </ColumnText>
+        
+        <ColumnText>
+          <TableCell colSpan={2}>
             <img src={adURL} alt="flipkartpoints" style={{ width: 390 }} />
           </TableCell>
-        </TableRow>
-        <TableRow>
+        </ColumnText>
+        
+        <ColumnText>
           <TableCell style={{ color: "878787" }}>Description</TableCell>
-          <TableCell>{product.description}</TableCell>
-        </TableRow>
+          <TableCell style={{ color: "#878787" }}>
+            {product.description}
+          </TableCell>
+        </ColumnText>
       </Table>
     </>
   );
