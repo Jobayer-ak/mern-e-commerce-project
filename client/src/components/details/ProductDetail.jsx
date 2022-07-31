@@ -11,7 +11,7 @@ import React from "react";
 import { LocalOffer as Badge } from "@mui/icons-material";
 
 const SmallText = styled(Box)`
-  font-size: 145px;
+  font-size: 14px;
   vertical-align: baseline;
   & > p {
     font-size: 14px;
@@ -51,7 +51,7 @@ const ProductDetail = ({ product }) => {
           <img
             src={fassured}
             alt="fassured"
-            style={{ width: 77, marginLeft: 20 }}
+            style={{ width: "77px", marginLeft: "20px" }}
           />
         </Box>
       </Typography>

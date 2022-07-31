@@ -19,9 +19,19 @@ const Container = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const RightContainer = styled(Grid)`
-  margin-top: 50px;
-`;
+const RightContainer = styled(Grid)(({theme})=>({
+
+  marginTop: 50,
+ 
+  "& >p": {
+    display: "flex",
+    marginTop: 10,
+  },
+  [theme.breakpoints.down("md")]:{
+    padding: "10px 35px",
+  }
+
+}));
 
 const DetailView = () => {
   const dispatch = useDispatch();
