@@ -5,17 +5,16 @@ const URL = "https://flipkart-mern-ecommerce.herokuapp.com";
 
 export const addToCart = (id, quantity) => async (dispatch) => {
   try {
-    const {data} = await axios.get(`${URL}/product/${id}`);
-    dispatch({type: actionType.ADD_TO_CART, payload: {...data, quantity}});
-
+    const { data } = await axios.get(`${URL}/product/${id}`);
+    dispatch({ type: actionType.ADD_TO_CART, payload: { ...data, quantity } });
   } catch (error) {
-    dispatch({type: actionType.ADD_TO_CART_ERROR, payload: error.message})
+    dispatch({ type: actionType.ADD_TO_CART_ERROR, payload: error.message });
   }
 };
 
-export const removerFromCart = (id) => (dispatch)=> {
+export const removeFromCart = (id) => (dispatch) => {
   dispatch({
-    type : actionType.REMOVE_FROM_CART,
-    payload: id
-  })
+    type: actionType.REMOVE_FROM_CART,
+    payload: id,
+  });
 };

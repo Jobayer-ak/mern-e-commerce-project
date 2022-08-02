@@ -2,14 +2,18 @@ import { Box, Grid, Typography, styled, Button } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
+import EmptyCart from './EmptyCart';
 import TotalView from './TotalView';
 
 
 
-const Container = styled(Grid)`
-    padding: 30px 135px;
+const Container = styled(Grid)(({theme})=>({
+    padding: "30px 135px",
+    [theme.breakpoints.down("md")]:{
+        padding: "15px 0",
+    }
+}))
 
-`
 
 const Header = styled(Box)`
     padding: 15px 24px;
@@ -32,6 +36,13 @@ const StyledButton = styled(Button)`
     border-radius: 2px;
 `
 
+const LeftComponent = styled(Grid)(({theme})=>({
+    paddingRight: "15px",
+    [theme.breakpoints.down("sm")]:{
+        marginBottom: "15px",
+    }
+}))
+
 const Cart = () => {
 
     const {cartItems} = useSelector(state => state.cart);
@@ -42,7 +53,7 @@ const Cart = () => {
         {
             cartItems.length?
                 <Container container>
-                    <Grid item lg={9} md={9} sm={12} xs={12}>
+                    <LeftComponent item lg={9} md={9} sm={12} xs={12}>
                         <Header>
                             <Typography>My Cart ({cartItems.length})</Typography>
                         </Header>
@@ -54,12 +65,12 @@ const Cart = () => {
                         <ButtonWrapper>
                             <StyledButton>Place Order</StyledButton>
                         </ButtonWrapper>
-                    </Grid>
+                    </LeftComponent>
                     <Grid item lg={3} md={3} sm={12} xs={12}>
                             <TotalView cartItems={cartItems}/>
                     </Grid>
                 </Container>
-                : <div>Empty</div>
+                : <EmptyCart/>
         }
         </>
     );
