@@ -21,3 +21,13 @@ export const authenticateLogin  = async (data) =>{
     return err.response;
   }
 }
+
+export const payUsingStripe = async (data) =>{
+  try{
+     let response =  await axios.post(`${URL}/payment`, data);
+     return response.data;
+  }
+  catch(error){
+    console.log("Error while calling payment api ", error);
+  }
+}

@@ -3,8 +3,9 @@ import React from "react";
 import { ShoppingCart as Cart, FlashOn as Flash } from "@mui/icons-material/";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {addToCart} from "../../redux/actions/cartAction";
+import { addToCart } from "../../redux/actions/cartAction";
 import { useState } from "react";
+import { payUsingStripe } from "../../service/api";
 
 const LeftContainer = styled(Box)(({ theme }) => ({
   minWidth: "40%",
@@ -15,8 +16,8 @@ const LeftContainer = styled(Box)(({ theme }) => ({
 }));
 
 const Image = styled("img")({
-  padding: '15px 20px',
-  width: '95%'
+  padding: "15px 20px",
+  width: "95%",
 });
 
 const StyleButton = styled(Button)(({ theme }) => ({
@@ -32,18 +33,29 @@ const StyleButton = styled(Button)(({ theme }) => ({
 }));
 
 const ActionItem = ({ product }) => {
-
   const [quantity, setQuantity] = useState(1);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {id} = product;
+  const { id } = product;
 
-  const addItemToCart = ()=>{
+  const addItemToCart = () => {
     dispatch(addToCart(id, quantity));
     navigate("/cart");
-  }
+  };
+
+  const buyNow = () => {
+    navigate("/cart");
+    let response = payUsingStripe({
+      amount: 500,
+      email: "jobayer.ak@gmail.com",
+    });
+    // let information = {
+    //   action: ,
+    //   params:
+    // }
+  };
 
   return (
     <LeftContainer>
@@ -58,13 +70,13 @@ const ActionItem = ({ product }) => {
       </Box>
       <StyleButton
         variant="contained"
-        onClick={()=> addItemToCart()}
+        onClick={() => addItemToCart()}
         style={{ marginRight: 10, background: "#ff9f00" }}
       >
         <Cart />
         Add To Cart
       </StyleButton>
-      <StyleButton variant="contained" style={{ background: "#fb541b" }}>
+      <StyleButton style={{ background: "#fb541b" }} variant="contained" onClick = {() => buyNow()} >
         <Flash />
         Buy Now
       </StyleButton>

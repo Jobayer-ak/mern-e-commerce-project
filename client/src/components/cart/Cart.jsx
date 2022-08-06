@@ -46,7 +46,8 @@ const LeftComponent = styled(Grid)(({theme})=>({
 const Cart = () => {
 
     const {cartItems} = useSelector(state => state.cart);
-    console.log(cartItems);
+    // console.log(cartItems);
+    
 
     return (
         <>
